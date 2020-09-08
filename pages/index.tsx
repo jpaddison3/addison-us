@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   allNonImage: {
     paddingTop: 30,
+    paddingLeft: 40,
     [theme.breakpoints.down("sm")]: {
       paddingTop: 0,
       paddingLeft: 4,
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       width: 300,
     },
     "& a": {
-      color: theme.palette.primary.dark,
+      color: theme.palette.primary.main,
       textDecoration: "none"
     }
   }
@@ -114,9 +115,9 @@ export default function Home() {
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     </Head>
-    <Grid container spacing={6}>
+    <Grid container>
       <Grid item>
-        <img className={classes.familyImage} src="https://res.cloudinary.com/jpaddison/image/upload/c_fill,g_auto,h_3000,w_1149/v1599583715/patricia-prudente-6UyWK8mDcWo-unsplash_czyzcy.jpg" />
+        <img className={classes.familyImage} src="https://res.cloudinary.com/jpaddison/image/upload/c_fill,g_auto,h_3000,w_2033/v1599598471/image_0036_lwhkpi.jpg" />
       </Grid>
       <Grid item>
         <Grid container direction="column" className={classes.allNonImage}>

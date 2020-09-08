@@ -135,8 +135,8 @@ export default function Home() {
             <Grid container direction="column" spacing={3}>
               <Grid item>
                 <Grid container spacing={3}>
-                  <Grid item md={6}><ProfileCard profile={profiles['katie']} /></Grid>
                   <Grid item md={6}><ProfileCard profile={profiles['skip']} /></Grid>
+                  <Grid item md={6}><ProfileCard profile={profiles['katie']} /></Grid>
                 </Grid>
               </Grid>
               <Grid item>

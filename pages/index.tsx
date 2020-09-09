@@ -6,10 +6,12 @@ import MapPin from 'components/MapPin'
 const useStyles = makeStyles((theme: Theme) => ({
   familyImage: {
     height: "100vh",
+    maxWidth: "35vw",
     [theme.breakpoints.down("sm")]: {
       width: "100vw",
-      objectFit: "cover"
-    }
+      maxWidth: "unset"
+    },
+    objectFit: "cover"
   },
   allNonImage: {
     paddingTop: 30,

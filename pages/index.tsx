@@ -117,7 +117,7 @@ export default function Home() {
     </Head>
     <Grid container>
       <Grid item>
-        <img className={classes.familyImage} src="https://res.cloudinary.com/jpaddison/image/upload/c_fill,g_auto,h_3000,w_2033/v1599598471/image_0036_lwhkpi.jpg" />
+        <img className={classes.familyImage} src="https://res.cloudinary.com/jpaddison/image/upload/c_fill,g_auto,h_3000,w_2338/v1599598471/image_0036_lwhkpi.jpg" />
       </Grid>
       <Grid item>
         <Grid container direction="column" className={classes.allNonImage}>

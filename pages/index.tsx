@@ -27,7 +27,7 @@ const profiles: { [id: string]: Profile } = {
     name: "Skip",
     location: "Atlanta, GA",
     subtitle: "Dad is never silly",
-    bio: [<>Built the internet before it was cool. Be nice or he’ll direct your rideshare into a <a href="https://cloud.google.com/maps-platform/ridesharing">river.</a></>],
+    bio: ["Built the internet before it was cool. Quick to volunteer to help people, he’s now the resident tech guy for friends, acquaintances, and charity alike."],
   },
   jp: {
     name: "JP",

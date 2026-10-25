@@ -1,6 +1,6 @@
 // https://feathericons.com/
 // Copyright Cole Bemis, licensed under the MIT license
-const MapPin = ({ className }: { className: string }) => <svg
+const MapPin = ({ className }: { className?: string }) => <svg
   xmlns="http://www.w3.org/2000/svg"
   width="24"
   height="24"

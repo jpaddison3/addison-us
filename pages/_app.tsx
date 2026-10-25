@@ -1,23 +1,18 @@
-import { useEffect } from 'react'
 import { AppProps } from 'next/app'
+import { AppCacheProvider } from '@mui/material-nextjs/v16-pagesRouter'
+import { ThemeProvider } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
 import { theme } from 'lib/theme'
-import { ThemeProvider, CssBaseline } from '@material-ui/core'
 
-function MyApp({ Component, pageProps }: AppProps) {
-  useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles && jssStyles.parentElement) {
-      jssStyles.parentElement.removeChild(jssStyles)
-    }
-  }, [])
+function MyApp(props: AppProps) {
+  const { Component, pageProps } = props
 
-  return <>
-    <CssBaseline />
+  return <AppCacheProvider {...props}>
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Component {...pageProps} />
     </ThemeProvider>
-  </>
+  </AppCacheProvider>
 }
 
 export default MyApp

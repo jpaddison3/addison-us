@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core/styles'
+import { createTheme } from '@mui/material/styles'
 
 const fontStack = 'Helvetica, "Helvetica Neue", Arial, sans-serif'
 
@@ -14,7 +14,7 @@ const headings = headingNames.reduce((coll: Headings, h: HeadingName) => {
 }, {} as Headings)
 
 // build theme
-export const theme = createMuiTheme({
+export const theme = createTheme({
   typography: {
     fontFamily: fontStack,
     ...headings,
@@ -22,6 +22,10 @@ export const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#3E91B8',
+    },
+    background: {
+      // Material-UI v4's default, which the site was designed against
+      default: '#fafafa',
     }
   }
 })

@@ -1,48 +1,13 @@
 import Head from 'next/head'
-import { Typography, Grid, Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Typography, Grid, Stack, Box } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import MapPin from 'components/MapPin'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  familyImage: {
-    height: "100vh",
-    maxWidth: "35vw",
-    [theme.breakpoints.down("sm")]: {
-      width: "100vw",
-      maxWidth: "unset"
-    },
-    objectFit: "cover"
-  },
-  allNonImage: {
-    paddingTop: 30,
-    paddingLeft: 40,
-    [theme.breakpoints.down("sm")]: {
-      paddingTop: 0,
-      paddingLeft: 4,
-      marginBottom: 50,
-    }
-  },
-  header: {
-    marginBottom: 10
-  },
-  location: {
-    color: "#777777",
-  },
-  locationIcon: {
-    height: "1em",
-    width: "1em",
-    marginRight: 5,
-  },
-  bio: {
-    [theme.breakpoints.up("sm")]: {
-      width: 300,
-    },
-    "& a": {
-      color: theme.palette.primary.main,
-      textDecoration: "none"
-    }
-  }
-}))
+const LocationIcon = styled(MapPin)({
+  height: "1em",
+  width: "1em",
+  marginRight: 5,
+})
 
 type Profile = {
   name: string,
@@ -54,19 +19,19 @@ type Profile = {
 const profiles: { [id: string]: Profile } = {
   katie: {
     name: "Katie",
-    location: "San Jose, CA",
+    location: "Atlanta, GA",
     subtitle: "Science Mom",
     bio: ["Those pictures from the 80s show a total nerd. Taught herself to be a reading tutor to teach her son with dyslexia."],
   },
   skip: {
     name: "Skip",
-    location: "San Jose, CA",
+    location: "Atlanta, GA",
     subtitle: "Dad is never silly",
     bio: [<>Built the internet before it was cool. Be nice or he’ll direct your rideshare into a <a href="https://cloud.google.com/maps-platform/ridesharing">river.</a></>],
   },
   jp: {
     name: "JP",
-    location: "Berkeley, CA",
+    location: "Cambridge, MA",
     subtitle: "Website Author",
     bio: [
       <a href="https://www.effectivealtruism.org/">Tries to do good.</a>,
@@ -82,33 +47,36 @@ const profiles: { [id: string]: Profile } = {
 }
 
 const ProfileCard = ({ profile }: { profile: Profile }) => {
-  const classes = useStyles()
-
-  return <Grid container direction="column" spacing={1}>
-    <Grid item>
+  return <Stack spacing={1}>
+    <Box>
       <Typography variant="h5" component="h3">{profile.name}</Typography>
-    </Grid>
-    <Grid item className={classes.location}>
-      <MapPin className={classes.locationIcon} />
+    </Box>
+    <Box sx={{ color: "#777777" }}>
+      <LocationIcon />
       <Typography component="span">{profile.location}</Typography>
-    </Grid>
-    <Grid item>
+    </Box>
+    <Box>
       <Typography><em>{profile.subtitle}</em></Typography>
-    </Grid>
-    <Grid item className={classes.bio}>
+    </Box>
+    <Box sx={{
+      width: { sm: 300 },
+      maxWidth: "100%",
+      "& a": {
+        color: "primary.main",
+        textDecoration: "none"
+      }
+    }}>
       {profile.bio.map((line, i) => <Typography
         gutterBottom={i !== profile.bio.length - 1}
         key={i}
       >
         {line}
       </Typography>)}
-    </Grid>
-  </Grid>
+    </Box>
+  </Stack>
 }
 
 export default function Home() {
-  const classes = useStyles()
-
   return <>
     <Head>
       <title>The Addison Family</title>
@@ -118,38 +86,46 @@ export default function Home() {
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     </Head>
     <Grid container>
-      <Grid item>
-        <img className={classes.familyImage} src="https://res.cloudinary.com/jpaddison/image/upload/c_fill,g_auto,h_3000,w_2338/v1599598471/image_0036_lwhkpi.jpg" />
+      <Grid>
+        <Box
+          component="img"
+          src="https://res.cloudinary.com/jpaddison/image/upload/c_fill,g_auto,h_3000,w_2338/v1599598471/image_0036_lwhkpi.jpg"
+          alt="The Addison family"
+          sx={{
+            display: "block",
+            height: "100vh",
+            width: { xs: "100vw", md: "auto" },
+            maxWidth: { xs: "unset", md: "35vw" },
+            objectFit: "cover",
+          }}
+        />
       </Grid>
-      <Grid item>
-        <Grid container direction="column" className={classes.allNonImage}>
-          <Grid item>
-            <Typography
-              variant="h2"
-              component="h1"
-              color="primary"
-              className={classes.header}
-            >
-              The Addison Family
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Grid container direction="column" spacing={3}>
-              <Grid item>
-                <Grid container spacing={3}>
-                  <Grid item md={6}><ProfileCard profile={profiles['skip']} /></Grid>
-                  <Grid item md={6}><ProfileCard profile={profiles['katie']} /></Grid>
-                </Grid>
-              </Grid>
-              <Grid item>
-                <Grid container spacing={3}>
-                  <Grid item md={6}><ProfileCard profile={profiles['jp']} /></Grid>
-                  <Grid item md={6}><ProfileCard profile={profiles['becca']} /></Grid>
-                </Grid>
-              </Grid>
+      <Grid size={{ xs: 12, md: "grow" }}>
+        <Stack sx={{
+          maxWidth: { md: 680 },
+          pt: { xs: 0, md: "30px" },
+          pl: { xs: "4px", md: "40px" },
+          mb: { xs: "50px", md: 0 },
+        }}>
+          <Typography
+            variant="h2"
+            component="h1"
+            color="primary"
+            sx={{ mb: "10px" }}
+          >
+            The Addison Family
+          </Typography>
+          <Stack spacing={3}>
+            <Grid container spacing={3}>
+              <Grid size={{ md: 6 }}><ProfileCard profile={profiles['skip']} /></Grid>
+              <Grid size={{ md: 6 }}><ProfileCard profile={profiles['katie']} /></Grid>
             </Grid>
-          </Grid>
-        </Grid>
+            <Grid container spacing={3}>
+              <Grid size={{ md: 6 }}><ProfileCard profile={profiles['jp']} /></Grid>
+              <Grid size={{ md: 6 }}><ProfileCard profile={profiles['becca']} /></Grid>
+            </Grid>
+          </Stack>
+        </Stack>
       </Grid>
     </Grid>
   </>
